@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Blog – Cryptography Substitution Techniques</title>
+
+<style>
+/* ---------------- GLOBAL STYLE ---------------- */
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    line-height: 1.7;
+    background: radial-gradient(circle at top, #051622, #000);
+    color: #e6f1ff;
+}
+
+header {
+    padding: 60px;
+    text-align: center;
+    font-size: 45px;
+    background: linear-gradient(135deg, #0a2a43, #020b15);
+    color: #00eaff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 3px solid #00eaff;
+    text-shadow: 0 0 8px #00eaff;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+/* ---------------- GLASS CARD ---------------- */
+.card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 25px;
+    margin-bottom: 35px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: 0.4s ease;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px #00eaff44;
+}
+
+h2 {
+    color: #00eaff;
+    text-shadow: 0 0 8px #00eaff;
+}
+
+/* ---------------- CAESAR CIPHER STYLE ---------------- */
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255,255,255,0.09);
+    border: 1px solid #00eaff66;
+    color: #e6f1ff;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 20px;
+    margin-top: 15px;
+    border: none;
+    background: linear-gradient(135deg, #00eaff, #005b96);
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 0 15px #00eaff;
+    transform: scale(1.05);
+}
+
+.output-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 234, 255, 0.1);
+    border-left: 3px solid #00eaff;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    Cryptography Substitution Techniques
+</header>
+
+<div class="container">
+
+    <!-- INTRO -->
+    <div class="card">
+        <h2>Introduction</h2>
+        <p>
+            Substitution techniques are classical cryptographic methods that replace each letter or 
+            unit of plaintext with another symbol based on a specific rule. These methods were widely 
+            used in ancient military communication, secret messaging, and early espionage long before 
+            computers existed. They laid the foundation for all modern encryption approaches by 
+            introducing concepts such as key-based transformations, alphabet manipulation, and 
+            encoding through mathematical operations.
+        </p>
+        <p>
+            Although simple substitution ciphers are insecure by today's standards, they remain 
+            essential for understanding how encryption works. They demonstrate key ideas like 
+            pattern masking, non-linear transformations, and the importance of keys in protecting 
+            data. This page explores substitution ciphers, with a focus on the Caesar Cipher, one of 
+            the most historically significant encryption methods.
+        </p>
+    </div>
+
+    <!-- CAESAR CIPHER -->
+    <div class="card">
+        <h2>Caesar Cipher Encoder (Interactive Tool)</h2>
+        <p>
+            The Caesar Cipher shifts every letter in the alphabet by a fixed number. For example, 
+            a shift value of 3 transforms A → D, B → E, and C → F. This method was famously used by 
+            Julius Caesar to protect sensitive military information.
+        </p>
+        <p>
+            Try encrypting your own message using the tool below:
+        </p>
+
+        <label>Enter Text:</label>
+        <input id="caesarText" placeholder="Enter plaintext here...">
+
+        <label>Shift Value:</label>
+        <input id="shiftValue" type="number" value="3" min="0" max="25">
+
+        <button onclick="encodeCaesar()">Encrypt</button>
+
+        <div class="output-box">
+            <strong>Encrypted Output:</strong>
+            <p id="caesarOutput"></p>
+        </div>
+    </div>
+
+    <!-- NEW TOPIC SECTION -->
+    <div class="card">
+        <h2>How Substitution Ciphers Work</h2>
+        <p>
+            Substitution ciphers rely on a simple but powerful idea: replace each symbol in the 
+            plaintext with another predetermined symbol. This mapping can be fixed (as in Caesar 
+            Cipher) or complex (as in polyalphabetic ciphers). Below are the major types:
+        </p>
+
+        <h3 style="color:#00eaff;">1. Simple Substitution Cipher</h3>
+        <p>
+            This cipher replaces each letter with another unique letter. Unlike Caesar’s fixed shift, 
+            any random mapping can be chosen. For example, A → Q, B → M, C → Z. Although this offers 
+            more combinations, it is still vulnerable to frequency analysis.
+        </p>
+
+        <h3 style="color:#00eaff;">2. Polyalphabetic Substitution</h3>
+        <p>
+            Instead of using one alphabet, multiple shifting alphabets are applied. The Vigenère 
+            Cipher is the most famous example. A key word determines how each letter is shifted, 
+            making frequency analysis much harder.
+        </p>
+
+        <h3 style="color:#00eaff;">3. Homophonic Substitution</h3>
+        <p>
+            Here, a single letter can be replaced with multiple possible symbols. This reduces 
+            frequency patterns and helps defend against cryptanalysis. For example, the letter E 
+            (the most common in English) could map to any of several symbols.
+        </p>
+
+        <h3 style="color:#00eaff;">4. Polygraphic Substitution</h3>
+        <p>
+            Instead of replacing one letter, this method replaces blocks of letters. The Playfair 
+            cipher is a well-known example, encrypting digraphs (pairs of letters) at a time.
+        </p>
+
+        <p>
+            These historical techniques reveal how encryption evolved from basic letter manipulation 
+            toward the highly complex mathematical algorithms used today.
+        </p>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="card">
+        <h2>Conclusion</h2>
+        <p>
+            Substitution ciphers may appear simple, but they represent the foundation of encryption 
+            as we know it. They introduced the core concepts of keys, symbol manipulation, 
+            pattern-hiding, and algorithmic thinking. These ideas later evolved into modern systems 
+            like symmetric-key encryption, asymmetric cryptography, and hashing algorithms.
+        </p>
+        <p>
+            By studying classical substitution techniques, we gain a deeper understanding of how 
+            modern security protocols function—and why strong, complex encryption is essential in 
+            protecting communication in the digital age. Whether you're a beginner exploring 
+            cryptography or a student studying cybersecurity, substitution ciphers offer a powerful 
+            first step toward mastering the art of secure communication.
+        </p>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+/* ---------------- Caesar Cipher Function ---------------- */
+function encodeCaesar() {
+    let text = document.getElementById("caesarText").value;
+    let shift = parseInt(document.getElementById("shiftValue").value);
+
+    let result = "";
+    for (let i = 0; i < text.length; i++) {
+        let c = text[i];
+
+        if (c.match(/[a-z]/i)) {
+            let code = text.charCodeAt(i);
+
+            // Uppercase letters
+            if (code >= 65 && code <= 90)
+                c = String.fromCharCode(((code - 65 + shift) % 26) + 65);
+
+            // Lowercase letters
+            else if (code >= 97 && code <= 122)
+                c = String.fromCharCode(((code - 97 + shift) % 26) + 97);
+        }
+        result += c;
+    }
+
+    document.getElementById("caesarOutput").innerText = result;
+}
+</script>
+
+</body>
+</html>
